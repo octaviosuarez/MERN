@@ -1,5 +1,5 @@
 import { FaBeer, FaIdBadge, FaStore } from "react-icons/fa";
-import Clients from "../Sections/Clients";
+import ClientsWrapper from "../Sections/Clients/ClientsWrapper";
 import Store from "../Sections/Store";
 import Homes from "../Sections/Homes";
 
@@ -14,7 +14,7 @@ const sideBarLinks = [
     idPath: "/clients",
     title: "Clientes",
     icon: <FaIdBadge />,
-    component: <Clients />,
+    component: <ClientsWrapper />,
   },
   {
     idPath: "/store",
