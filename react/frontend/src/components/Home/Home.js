@@ -6,11 +6,11 @@ import { sideBarLinks } from "../constants";
 const Home = () => {
   return (
     <Router>
-      <div className="py-[1rem] px-[2rem] bg-[#1C2434] text-white">
+      <div className="py-[1rem] px-[2rem] bg-white text-black border border-b-black-50">
         <NavBar />
       </div>
       <div className="flex">
-        <div className="w-[12rem] h-[calc(100vh-52px)] border-r border-black-100 bg-[#1C2434]">
+        <div className="w-[16rem] h-[calc(100vh-52px)] bg-white border border-r-black-50 border-t-0">
           <SideBar />
         </div>
         {sideBarLinks.map((i, index) => (

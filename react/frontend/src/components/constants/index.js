@@ -1,31 +1,26 @@
-import { FaBeer, FaIdBadge, FaStore } from "react-icons/fa";
+import { FaWhatsapp, FaBeer, FaHouseUser } from "react-icons/fa";
+import { FiMenu } from "react-icons/fi";
 import ClientsWrapper from "../Sections/Clients/ClientsWrapper";
-import Store from "../Sections/Store";
-import Homes from "../Sections/Homes";
+import WhatsAppMsg from "../Sections/WhatsAppMsg";
 
 const sideBarLinks = [
   {
-    idPath: "/",
-    title: "Home",
-    icon: <FaBeer />,
-    component: <Homes />,
-  },
-  {
     idPath: "/clients",
-    title: "Clientes",
-    icon: <FaIdBadge />,
+    title: "Home",
+    icon: <FaHouseUser />,
     component: <ClientsWrapper />,
   },
   {
-    idPath: "/store",
-    title: "Tienda",
-    icon: <FaStore />,
-    component: <Store />,
+    idPath: "/whatsapp",
+    title: "WhatsApp",
+    icon: <FaWhatsapp />,
+    component: <WhatsAppMsg />,
   },
 ];
 
 const navLink = {
   title: "GROW",
+  icon: <FiMenu />,
 };
 
 export { sideBarLinks, navLink };
