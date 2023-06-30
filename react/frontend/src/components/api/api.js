@@ -34,7 +34,7 @@ class API {
       });
       return await response.json();
     } catch (error) {
-      throw error;
+      console.log("errir", error);
     }
   }
 

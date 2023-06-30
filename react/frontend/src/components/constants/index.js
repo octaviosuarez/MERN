@@ -20,7 +20,7 @@ const sideBarLinks = [
 
 const navLink = {
   title: "GROW",
-  icon: <FiMenu />,
+  icon: <FiMenu size={25} />,
 };
 
 export { sideBarLinks, navLink };

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-const ABMmodal = ({ data, isUpdate, isPost, save, update }) => {
+const ABMmodal = ({ data, isUpdate, isPost, save, update, cancelChanges }) => {
   const [nombre, setNombre] = useState(isUpdate ? data.title : "");
   const [contenido, setContenido] = useState(isUpdate ? data.content : "");
   const [author, setAuthor] = useState(isUpdate ? data.author : "");
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  //   useEffect(() => {
+  //     console.log(data);
+  //   }, [data]);
 
   const saveChanges = () => {
     isUpdate
@@ -73,6 +73,7 @@ const ABMmodal = ({ data, isUpdate, isPost, save, update }) => {
       <div className="flex mt-10 float-right">
         <button
           type="button"
+          onClick={cancelChanges}
           class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-normal text-sm px-5 py-1.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
         >
           Cancelar

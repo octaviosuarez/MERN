@@ -8,11 +8,12 @@ const ClientsWrapper = () => {
   const [clients, setClients] = useState([]);
   const [isModalOpenUpdate, setIsModalOpenUpdate] = useState(false);
   const [isModalOpenPost, setIsModalOpenPost] = useState(false);
-  const [dataToSendModal, setDataToSendModal] = useState(false);
+  const [dataToSendModal, setDataToSendModal] = useState(null);
+  const [updateCount, setUpdateCount] = useState(0);
 
   useEffect(() => {
     getArticles();
-  }, []);
+  }, [updateCount]);
 
   const closeModal = () => {
     setIsModalOpenUpdate(false);
@@ -33,12 +34,25 @@ const ClientsWrapper = () => {
   /* *******************LLAMADOS A LA API*********************** */
 
   const deleteClient = async (evt, data) => {
-    evt.preventDefault();
-    await api.delete(data._id);
+    try {
+      await api.delete(data._id);
+      setUpdateCount((prevCount) => prevCount + 1); //actualizamos el estado cuando hacemos abm generamos nuevo renderizado para visualizar los datos en vivo, debe de haber otra forma
+    } catch (e) {
+      console.log(e);
+    } finally {
+      closeModal();
+    }
   };
 
   const save = async (data) => {
-    await api.post(data);
+    try {
+      await api.post(data);
+      setUpdateCount((prevCount) => prevCount + 1); //actualizamos el estado cuando hacemos abm generamos nuevo renderizado para visualizar los datos en vivo, debe de haber otra forma
+    } catch (es) {
+      console.log(es);
+    } finally {
+      closeModal();
+    }
   };
 
   const getArticles = async () => {
@@ -47,7 +61,14 @@ const ClientsWrapper = () => {
   };
 
   const update = async (data) => {
-    await api.update(dataToSendModal._id, data);
+    try {
+      await api.update(dataToSendModal?._id, data);
+      setUpdateCount((prevCount) => prevCount + 1); //actualizamos el estado cuando hacemos abm generamos nuevo renderizado para visualizar los datos en vivo, debe de haber otra forma
+    } catch (e) {
+      console.log(e);
+    } finally {
+      closeModal();
+    }
   };
   /* *******************FIN LLAMADOS A LA API*********************** */
 
@@ -60,13 +81,22 @@ const ClientsWrapper = () => {
         postClient={openModalPost}
       />
       {isModalOpenUpdate && (
-        <Modal isOpen={true} onClose={closeModal} titulo={"Actualizar"}>
+        <Modal
+          isOpen={isModalOpenUpdate}
+          onClose={closeModal}
+          titulo={"Actualizar"}
+        >
           <ABMmodal isUpdate={true} data={dataToSendModal} update={update} />
         </Modal>
       )}
       {isModalOpenPost && (
-        <Modal isOpen={true} onClose={closeModal} titulo={"Agregar"}>
-          <ABMmodal isPost={true} data={null} save={save} />
+        <Modal isOpen={isModalOpenPost} onClose={closeModal} titulo={"Agregar"}>
+          <ABMmodal
+            isPost={true}
+            data={null}
+            save={save}
+            cancelChanges={closeModal}
+          />
         </Modal>
       )}
     </div>

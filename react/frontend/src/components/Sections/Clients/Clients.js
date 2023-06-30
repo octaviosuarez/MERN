@@ -67,7 +67,7 @@ const Clients = ({ data, updateClient, deleteClient, postClient }) => {
 
       <div className=" h-[90%] py-[2rem] px-[4rem] mt-2 rounded-sm bg-white shadow-md">
         {searchBarAndAddButtonClient()}
-        <div class=" mt-10 relative overflow-x-auto">
+        <div class=" mt-10 relative overflow-x-auto min-h-[500px]">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -91,19 +91,22 @@ const Clients = ({ data, updateClient, deleteClient, postClient }) => {
             <tbody>
               {data &&
                 data.map((i, index) => (
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <tr
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    key={index}
+                  >
                     <td class="px-6 py-4">{i.title}</td>
                     <td class="px-6 py-4">{i.content}</td>
                     <td class="px-6 py-4">{i.author}</td>
                     <td class="px-6 py-4">{i.date}</td>
                     <td class="px-6 py-4">
                       <div className="flex space-x-4">
-                        <i
-                          className="cursor-pointer"
+                        <button
+                          className="cursor-pointer hover:text-white-700"
                           onClick={(evt) => updateClient(evt, i)}
                         >
                           <GrUpdate />
-                        </i>
+                        </button>
                         <i
                           className="cursor-pointer"
                           onClick={(evt) => deleteClient(evt, i)}

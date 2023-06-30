@@ -16,7 +16,6 @@ router.post("/save", function (req, res) {
     article
       .save()
       .then((item) => {
-        console.log("item", item);
         res.send("Articulo guardado correctamente");
       })
       .catch((err) => {
@@ -45,8 +44,6 @@ router.get("/buscarArticulos", function (req, res) {
 router.delete("/delete/:id", (req, res) => {
   try {
     const articleId = req.params.id;
-    console.log("asdasdsad", articleId);
-
     Article.findByIdAndDelete(articleId)
       .then(() => {
         res.send("Artículo eliminado correctamente");
